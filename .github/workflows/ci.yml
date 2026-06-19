@@ -49,7 +49,7 @@ jobs:
           echo "github.event_name: ${{ github.event_name }}"
           cat $GITHUB_EVENT_PATH
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         # with:
         #   sparse-checkout: |
         #     package.json
@@ -137,7 +137,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     needs: [release-versions]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: |
             package.json
@@ -199,7 +199,7 @@ jobs:
         with:
           swap-size-gb: 4
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         if: steps.packages-cache-build.outputs.cache-hit != 'true'
 
       - name: Setup NodeJS
@@ -274,7 +274,7 @@ jobs:
           - type: ${{ (github.event_name != 'release' && github.ref != 'refs/heads/develop') && 'production' || '' }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/meteor-build
         with:
@@ -315,7 +315,7 @@ jobs:
             type: coverage
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: ./.github/actions/restore-packages
 
@@ -390,7 +390,7 @@ jobs:
       LOWERCASE_REPOSITORY: ${{ needs.release-versions.outputs.lowercase-repo }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         if: github.actor != 'dependabot[bot]' && (github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'release' || github.ref == 'refs/heads/develop')
         with:
           sparse-checkout: |
@@ -460,7 +460,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Track Docker image sizes
         uses: ./.github/actions/docker-image-size-tracker
@@ -637,7 +637,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Setup NodeJS
         uses: ./.github/actions/setup-node
@@ -732,7 +732,7 @@ jobs:
     needs: [release-versions, test-api-ee, test-api-livechat-ee, test-ui-ee]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Use Node.js
         uses: actions/setup-node@v6.3.0
@@ -831,7 +831,7 @@ jobs:
     needs: [build-gh-docker-publish, release-versions]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: |
             package.json
@@ -888,7 +888,7 @@ jobs:
       LOWERCASE_REPOSITORY: ${{ needs.release-versions.outputs.lowercase-repo }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: |
             docker-compose-ci.yml
@@ -1002,7 +1002,7 @@ jobs:
       - docker-image-publish
       - release-versions
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: |
             package.json
