@@ -112,7 +112,7 @@ jobs:
           username: ${{ secrets.CR_USER }}
           password: ${{ secrets.CR_PAT }}
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Setup NodeJS
         uses: ./.github/actions/setup-node
