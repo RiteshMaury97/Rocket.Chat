@@ -180,7 +180,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Cache build
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         id: packages-cache-build
         with:
           path: |
@@ -222,7 +222,7 @@ jobs:
           echo "- **node_modules size**: \`$(du -sh node_modules 2>/dev/null | cut -f1 || echo 'n/a')\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Cache vite
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         if: steps.packages-cache-build.outputs.cache-hit != 'true'
         with:
           path: ./node_modules/.vite
